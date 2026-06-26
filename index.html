@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For You ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{overflow:hidden;height:100vh;background:linear-gradient(#081326,#13294b);display:flex;justify-content:center;align-items:center;color:#fff}
+#stars,#fx{position:fixed;inset:0;pointer-events:none}
+.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:twinkle 2s infinite}
+@keyframes twinkle{50%{opacity:.2}}
+.card{display:none;z-index:5;width:min(92%,650px);background:rgba(255,255,255,.12);backdrop-filter:blur(12px);padding:28px;border-radius:22px;text-align:center;box-shadow:0 10px 30px #0006}
+#envelope{cursor:pointer;text-align:center}
+.env{font-size:120px;animation:bob 2s infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+button{margin-top:18px;padding:12px 24px;border:0;border-radius:30px;background:#ff5d8f;color:#fff;cursor:pointer}
+#msg{white-space:pre-wrap;line-height:1.8;min-height:220px}
+.heart,.petal{position:absolute;bottom:-40px;animation:up linear forwards}
+.heart{color:#ff5d8f}.petal{color:#ffd6e7}
+@keyframes up{to{transform:translateY(-120vh);opacity:0}}
+#teddy{font-size:70px;margin-top:10px;animation:bob 2.5s infinite}
+.popup{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#fff;color:#ff4f7d;padding:14px 24px;border-radius:30px;display:none}
+.hugBtn{
+
+margin-top:15px;
+background:#ff6b95;
+
+}
+
+#hugOverlay{
+
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.75);
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+opacity:0;
+pointer-events:none;
+
+transition:.8s;
+
+z-index:999;
+
+}
+
+#hugOverlay.show{
+
+opacity:1;
+pointer-events:auto;
+
+}
+
+.hugBox{
+
+text-align:center;
+color:white;
+
+animation:zoom .8s;
+
+}
+
+@keyframes zoom{
+
+from{
+
+transform:scale(.6);
+opacity:0;
+
+}
+
+to{
+
+transform:scale(1);
+opacity:1;
+
+}
+
+}
+
+.hugBear{
+
+font-size:120px;
+
+animation:hug 1.5s infinite;
+
+}
+
+@keyframes hug{
+
+0%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.12);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+.hugHeart{
+
+font-size:80px;
+
+animation:beat .8s infinite;
+
+}
+
+@keyframes beat{
+
+0%,100%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.35);
+
+}
+
+}
+</style></head>
+<div id="hugOverlay">
+
+    <div class="hugBox">
+
+        <div class="hugHeart">❤️</div>
+
+        <div class="hugBear">
+            🧸
+        </div>
+
+        <h2>Sending You the Biggest Virtual Hug</h2>
+
+        <p>
+            Everything will be okay.
+            <br>
+            You don't have to face everything alone.
+            ❤️
+        </p>
+
+    </div>
+
+</div>
+<body>
+<div id="stars"></div><div id="fx"></div>
+<div id="envelope">
+<div class="env">💌</div>
+<h2>Click the Envelope</h2><p>A little comfort is waiting for you ❤️</p>
+</div>
+<div class="card" id="card">
+<h1>For You ❤️</h1>
+<div id="msg"></div>
+<div id="teddy">🧸❤️</div>
+<button onclick="document.getElementById('music').play()">🎵 Play Music</button>
+<button onclick="giveHug()" class="hugBtn">
+🤗 Need a Hug?
+</button>
+</div>
+
+<audio id="music" loop><source src="welcome-to-my-life.mp3" type="audio/mpeg"></audio>
+<script>
+for(let i=0;i<120;i++){let s=document.createElement('div');s.className='star';s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';s.style.animationDelay=Math.random()*2+'s';stars.appendChild(s);}
+envelope.onclick=()=>{envelope.style.display='none';card.style.display='block';type();setInterval(fxgen,250);setInterval(petal,700);}
+const text=`Hey... ❤️
+
+I know things feel heavy sometimes.
+
+It's okay to rest.
+It's okay to cry.
+It's okay to take your time.
+
+Please remember...
+
+You are loved.
+You are enough.
+You matter.
+
+No matter what happens,
+I'm proud of you.
+
+Take care of yourself. ❤️`;
+let i=0;
+function type(){if(i<text.length){msg.textContent+=text[i++];setTimeout(type,35)}else{setTimeout(()=>pop.style.display='block',1000)}}
+function fxgen(){let h=document.createElement('div');h.className='heart';h.textContent='❤';h.style.left=Math.random()*100+'vw';h.style.fontSize=(16+Math.random()*20)+'px';h.style.animationDuration=(5+Math.random()*4)+'s';fx.appendChild(h);setTimeout(()=>h.remove(),9000)}
+function petal(){let p=document.createElement('div');p.className='petal';p.textContent='🌸';p.style.left=Math.random()*100+'vw';p.style.fontSize=(16+Math.random()*10)+'px';p.style.animationDuration=(7+Math.random()*4)+'s';fx.appendChild(p);setTimeout(()=>p.remove(),11000)}
+function giveHug(){
+
+const overlay=document.getElementById("hugOverlay");
+
+overlay.classList.add("show");
+
+// Phone vibration
+if(navigator.vibrate){
+
+navigator.vibrate([200,100,200,100,300]);
+
+}
+
+// Heart burst
+for(let i=0;i<40;i++){
+
+let heart=document.createElement("div");
+
+heart.innerHTML="❤️";
+
+heart.style.position="fixed";
+heart.style.left="50%";
+heart.style.top="50%";
+
+heart.style.fontSize=Math.random()*25+20+"px";
+
+heart.style.pointerEvents="none";
+
+heart.style.transition="2s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+
+heart.style.left=(Math.random()*100)+"vw";
+heart.style.top=(Math.random()*100)+"vh";
+
+heart.style.opacity="0";
+
+heart.style.transform="scale(2)";
+
+},50);
+
+setTimeout(()=>{
+
+heart.remove();
+
+},2200);
+
+}
+
+// Close after 6 seconds
+setTimeout(()=>{
+
+overlay.classList.remove("show");
+
+},6000);
+
+}
+</script>
+</body></html>
